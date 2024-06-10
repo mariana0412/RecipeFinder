@@ -10,6 +10,18 @@ import UIKit
 
 class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
+        view.addSubview(welcomeLabel)
+        view.addSubview(productImageView)
+        view.addSubview(takePictureButton)
+        
+        setupConstraints()
+    }
+    
     let welcomeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -21,33 +33,37 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         return label
     }()
     
+    let productImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "products_on_the_table")
+        
+        return imageView
+    }()
+    
     let takePictureButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Take Picture", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.addTarget(WelcomeViewController.self, action: #selector(takePictureTapped), for: .touchUpInside)
+        
         return button
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        
-        view.addSubview(welcomeLabel)
-        view.addSubview(takePictureButton)
-        
-        setupConstraints()
-    }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            welcomeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            welcomeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            
+            productImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            productImageView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
+            productImageView.widthAnchor.constraint(equalToConstant: 350),
+            productImageView.heightAnchor.constraint(equalToConstant: 350),
             
             takePictureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            takePictureButton.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20)
+            takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 20)
         ])
     }
     
