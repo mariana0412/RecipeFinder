@@ -11,10 +11,11 @@ import UIKit
 class IngredientTableViewCell: UITableViewCell {
     
     let textField: UITextField = {
-        let tf = UITextField()
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.borderStyle = .roundedRect
-        return tf
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.borderStyle = .roundedRect
+        
+        return textField
     }()
     
     var ingredientNameChanged: ((String) -> Void)?

@@ -49,6 +49,7 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         
         alert.addAction(cancel)
         alert.addAction(ok)
+        
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -75,6 +76,7 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         return swipeActions
     }
     
+    // MARK: SETTINGS FOR TABLEVIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
     }
