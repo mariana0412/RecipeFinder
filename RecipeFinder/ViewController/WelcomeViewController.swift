@@ -71,7 +71,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //view.backgroundColor = .white
+        view.backgroundColor = .white
         
         setupSubviews()
         setupConstraints()
