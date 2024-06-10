@@ -10,22 +10,22 @@ import UIKit
 
 class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        
-        view.addSubview(welcomeLabel)
-        view.addSubview(productImageView)
-        view.addSubview(takePictureButton)
-        
-        setupConstraints()
-    }
-    
+    // MARK: - Properties
     let welcomeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Take a picture of your products, please"
+        label.text = "Welcome to RecipeFinder!"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.textColor = .black
+        
+        return label
+    }()
+    
+    let instructionsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Please, take a picture of your products."
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
@@ -45,28 +45,66 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     let takePictureButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Take Picture", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.addTarget(WelcomeViewController.self, action: #selector(takePictureTapped), for: .touchUpInside)
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = " Take Photo"
+        configuration.baseForegroundColor = .black
+        configuration.baseBackgroundColor = .systemYellow
+        configuration.cornerStyle = .medium
+        configuration.image = UIImage(systemName: "camera.fill")
+        configuration.imagePadding = 10
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        
+        var container = AttributeContainer()
+        container.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        configuration.attributedTitle = AttributedString(" Take Photo", attributes: container)
+        
+        button.configuration = configuration
+        
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
         
         return button
     }()
     
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //view.backgroundColor = .white
+        
+        setupSubviews()
+        setupConstraints()
+    }
+    
+    // MARK: - Setup Methods
+    private func setupSubviews() {
+        view.addSubview(welcomeLabel)
+        view.addSubview(instructionsLabel)
+        view.addSubview(productImageView)
+        view.addSubview(takePictureButton)
+        takePictureButton.addTarget(self, action: #selector(takePictureTapped), for: .touchUpInside)
+    }
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            welcomeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            welcomeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
+            
+            instructionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructionsLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 60),
             
             productImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            productImageView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
-            productImageView.widthAnchor.constraint(equalToConstant: 350),
-            productImageView.heightAnchor.constraint(equalToConstant: 350),
+            productImageView.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 10),
+            productImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
+            productImageView.heightAnchor.constraint(equalToConstant: 320),
             
             takePictureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 20)
+            takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10)
         ])
     }
     
+    // MARK: - Action Methods
     @objc func takePictureTapped() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePicker = UIImagePickerController()
@@ -95,6 +133,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         picker.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Helper Methods
     private func performYOLODetection(on image: UIImage) {
         // YOLO detection
         
