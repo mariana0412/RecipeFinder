@@ -14,6 +14,7 @@
 		CA0E3F972C172C1D000FC240 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3F962C172C1D000FC240 /* Ingredient.swift */; };
 		CA0E3F9F2C173794000FC240 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */; };
 		CA0E3FA12C1739EE000FC240 /* IngredientsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */; };
+		CA5DAE502C19DE0F00DA8DCC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA5DAE4F2C19DE0F00DA8DCC /* .gitignore */; };
 		CA68BB3D2C14522800BC9633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68BB3C2C14522800BC9633 /* AppDelegate.swift */; };
 		CA68BB3F2C14522800BC9633 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68BB3E2C14522800BC9633 /* SceneDelegate.swift */; };
 		CA68BB462C14522900BC9633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA68BB452C14522900BC9633 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		CA0E3F962C172C1D000FC240 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListViewController.swift; sourceTree = "<group>"; };
+		CA5DAE4F2C19DE0F00DA8DCC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CA68BB392C14522800BC9633 /* RecipeFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA68BB3C2C14522800BC9633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA68BB3E2C14522800BC9633 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				CA68BB472C14522900BC9633 /* LaunchScreen.storyboard */,
 				CA68BB4A2C14522900BC9633 /* Info.plist */,
 				CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */,
+				CA5DAE4F2C19DE0F00DA8DCC /* .gitignore */,
 			);
 			path = RecipeFinder;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA68BB462C14522900BC9633 /* Assets.xcassets in Resources */,
+				CA5DAE502C19DE0F00DA8DCC /* .gitignore in Resources */,
 				CA68BB492C14522900BC9633 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
