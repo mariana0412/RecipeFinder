@@ -42,30 +42,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         return imageView
     }()
     
-    let takePictureButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = " Take Photo"
-        configuration.baseForegroundColor = .black
-        configuration.baseBackgroundColor = .systemYellow
-        configuration.cornerStyle = .medium
-        configuration.image = UIImage(systemName: "camera.fill")
-        configuration.imagePadding = 10
-        configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        
-        var container = AttributeContainer()
-        container.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        configuration.attributedTitle = AttributedString(" Take Photo", attributes: container)
-        
-        button.configuration = configuration
-        
-        button.layer.cornerRadius = 10
-        button.layer.masksToBounds = true
-        
-        return button
-    }()
+    let takePictureButton: UIButton = ButtonFactory.makeButton(withTitle: "Take Photo", imageName: "camera.fill")
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

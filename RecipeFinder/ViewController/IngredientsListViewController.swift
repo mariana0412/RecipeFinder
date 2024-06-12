@@ -18,6 +18,7 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: - Properties
     var tableView: UITableView = UITableView()
     var ingredients: [Ingredient] = [Ingredient(name: "milk"), Ingredient(name: "juice"), Ingredient(name: "potato")]
+    var searchButton: UIButton = ButtonFactory.makeButton(withTitle: "Search", imageName: "magnifyingglass")
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -31,6 +32,8 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: - Setup Methods
     private func setupSubviews() {
         view.addSubview(tableView)
+        view.addSubview(searchButton)
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: Const.cellReuseIdentifier)
         tableView.delegate = self
@@ -42,7 +45,12 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: searchButton.topAnchor, constant: -10),
+                        
+            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            searchButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     

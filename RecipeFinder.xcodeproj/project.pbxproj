@@ -16,6 +16,7 @@
 		CA68BB462C14522900BC9633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA68BB452C14522900BC9633 /* Assets.xcassets */; };
 		CA68BB492C14522900BC9633 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CA68BB482C14522900BC9633 /* Base */; };
 		CACB42F02C17457E005AB0DF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB42EF2C17457E005AB0DF /* WelcomeViewController.swift */; };
+		CACB42F22C19CCFF005AB0DF /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CA68BB482C14522900BC9633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA68BB4A2C14522900BC9633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CACB42EF2C17457E005AB0DF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				CA68BB452C14522900BC9633 /* Assets.xcassets */,
 				CA68BB472C14522900BC9633 /* LaunchScreen.storyboard */,
 				CA68BB4A2C14522900BC9633 /* Info.plist */,
+				CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */,
 			);
 			path = RecipeFinder;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA0E3F9F2C173794000FC240 /* IngredientTableViewCell.swift in Sources */,
+				CACB42F22C19CCFF005AB0DF /* ButtonFactory.swift in Sources */,
 				CA0E3F972C172C1D000FC240 /* Ingredient.swift in Sources */,
 				CA0E3FA12C1739EE000FC240 /* IngredientsListViewController.swift in Sources */,
 				CACB42F02C17457E005AB0DF /* WelcomeViewController.swift in Sources */,
