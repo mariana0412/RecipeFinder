@@ -16,9 +16,10 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     // MARK: - Properties
-    var tableView: UITableView = UITableView()
-    var ingredients: [Ingredient] = [Ingredient(name: "milk"), Ingredient(name: "juice"), Ingredient(name: "potato")]
-    var searchButton: UIButton = ButtonFactory.makeButton(withTitle: "Search", imageName: "magnifyingglass")
+    private var tableView: UITableView = UITableView()
+    private var ingredients: [Ingredient] = [Ingredient(name: "milk"), Ingredient(name: "juice"), Ingredient(name: "potato")]
+    private var searchButton: UIButton = ButtonFactory.makeButton(withTitle: "Search", imageName: "magnifyingglass")
+    private var addButton: UIButton = UIButton(type: .system)
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -27,17 +28,25 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         setupSubviews()
         setupConstraints()
         setupNavigationBar()
+        setupActions()
     }
     
     // MARK: - Setup Methods
     private func setupSubviews() {
-        view.addSubview(tableView)
+        view.addSubview(tableView)        
         view.addSubview(searchButton)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: Const.cellReuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        addButton.setTitle("Add", for: .normal)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
+        headerView.addSubview(addButton)
+        tableView.tableHeaderView = headerView
     }
     
     private func setupConstraints() {
@@ -46,7 +55,12 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: searchButton.topAnchor, constant: -10),
-                        
+            
+            addButton.centerXAnchor.constraint(equalTo: tableView.tableHeaderView!.centerXAnchor),
+            addButton.centerYAnchor.constraint(equalTo: tableView.tableHeaderView!.centerYAnchor),
+            addButton.heightAnchor.constraint(equalToConstant: 50),
+            addButton.widthAnchor.constraint(equalTo: tableView.tableHeaderView!.widthAnchor, constant: -40),
+            
             searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
@@ -58,7 +72,13 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         title = "Ingredients"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
+        addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
    }
+    
+    private func setupActions() {
+        searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
+    }
     
     // MARK: - Action Methods
     @objc func addTapped() {
@@ -89,6 +109,15 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
         }
+    }
+    
+    @objc func searchTapped() {
+        let allRecipesViewController = AllRecipesViewController()
+        navigationController?.pushViewController(allRecipesViewController, animated: true)
+    }
+
+    @objc func backTapped() {
+        navigationController?.popViewController(animated: true)
     }
 
     // MARK: - UITableViewDelegate and UITableViewDataSource Methods

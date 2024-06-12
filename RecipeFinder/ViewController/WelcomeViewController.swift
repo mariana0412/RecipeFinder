@@ -116,7 +116,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         // Redirect to IngredientsListController
         let ingredientsListController = IngredientsListViewController()
-        ingredientsListController.ingredients = [Ingredient(name: "Sample Ingredient 1"), Ingredient(name: "Sample Ingredient 2")]
+//        ingredientsListController.ingredients = [Ingredient(name: "Sample Ingredient 1"), Ingredient(name: "Sample Ingredient 2")]
         navigationController?.pushViewController(ingredientsListController, animated: true)
     }
     

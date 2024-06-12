@@ -61,7 +61,3 @@ class RecipeViewController: UIViewController {
         ])
     }
 }
-
-#Preview {
-    RecipeViewController(recipe: Recipe(name: "nastia sweet"))
-}

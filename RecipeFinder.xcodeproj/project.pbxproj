@@ -57,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0E3F962C172C1D000FC240 /* Ingredient.swift */,
+				1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -64,11 +65,30 @@
 		CA0E3F982C172C41000FC240 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */,
-				CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */,
 				CACB42EF2C17457E005AB0DF /* WelcomeViewController.swift */,
+				CA5DAE522C19DF9300DA8DCC /* IngredientsListViewController */,
+				CA5DAE532C19E13B00DA8DCC /* AllRecipesViewController */,
+				1AED0CAA2C15E9F600EE9ECF /* RecipeViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CA5DAE522C19DF9300DA8DCC /* IngredientsListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */,
+				CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */,
+			);
+			path = IngredientsListViewController;
+			sourceTree = "<group>";
+		};
+		CA5DAE532C19E13B00DA8DCC /* AllRecipesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1AED0CA82C15E9EC00EE9ECF /* AllRecipesViewController.swift */,
+				1AED0CAE2C15EC7000EE9ECF /* RecipeTableViewCell.swift */,
+			);
+			path = AllRecipesViewController;
 			sourceTree = "<group>";
 		};
 		CA68BB302C14522800BC9633 = {
@@ -94,10 +114,6 @@
 				CA0E3F952C172C10000FC240 /* Model */,
 				CA68BB3C2C14522800BC9633 /* AppDelegate.swift */,
 				CA68BB3E2C14522800BC9633 /* SceneDelegate.swift */,
-				1AED0CA82C15E9EC00EE9ECF /* AllRecipesViewController.swift */,
-				1AED0CAA2C15E9F600EE9ECF /* RecipeViewController.swift */,
-				1AED0CAE2C15EC7000EE9ECF /* RecipeTableViewCell.swift */,
-				1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */,
 				CA68BB452C14522900BC9633 /* Assets.xcassets */,
 				CA68BB472C14522900BC9633 /* LaunchScreen.storyboard */,
 				CA68BB4A2C14522900BC9633 /* Info.plist */,
