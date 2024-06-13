@@ -44,6 +44,18 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     let takePictureButton: UIButton = ButtonFactory.makeButton(withTitle: "Take Photo", imageName: "camera.fill")
     
+    let manualInputLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Proceed with manual input"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .systemBlue
+        label.isUserInteractionEnabled = true
+        
+        return label
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +64,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         setupSubviews()
         setupConstraints()
+        setupActions()
     }
     
     // MARK: - Setup Methods
@@ -60,7 +73,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         view.addSubview(instructionsLabel)
         view.addSubview(productImageView)
         view.addSubview(takePictureButton)
-        takePictureButton.addTarget(self, action: #selector(takePictureTapped), for: .touchUpInside)
+        view.addSubview(manualInputLabel)
     }
 
     private func setupConstraints() {
@@ -77,8 +90,18 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
             productImageView.heightAnchor.constraint(equalToConstant: 320),
             
             takePictureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10)
+            takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
+            
+            manualInputLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            manualInputLabel.topAnchor.constraint(equalTo: takePictureButton.bottomAnchor, constant: 20)
         ])
+    }
+    
+    private func setupActions() {
+        takePictureButton.addTarget(self, action: #selector(takePictureTapped), for: .touchUpInside)
+        
+        let manualInputTapGesture = UITapGestureRecognizer(target: self, action: #selector(manualInputTapped))
+        manualInputLabel.addGestureRecognizer(manualInputTapGesture)
     }
     
     // MARK: - Action Methods
@@ -93,6 +116,11 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
+    }
+    
+    @objc func manualInputTapped() {
+        let ingredientsListController = IngredientsListViewController()
+        navigationController?.pushViewController(ingredientsListController, animated: true)
     }
     
     // MARK: - UIImagePickerControllerDelegate Methods

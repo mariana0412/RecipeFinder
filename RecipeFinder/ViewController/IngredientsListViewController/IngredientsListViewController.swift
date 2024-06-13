@@ -70,7 +70,6 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     
     private func setupNavigationBar() {
         title = "Ingredients"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
         addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
