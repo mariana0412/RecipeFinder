@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A092C692C1CE3950072E2DC /* jsonwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A092C682C1CE3950072E2DC /* jsonwork.swift */; };
+		1A092C6B2C1CE41F0072E2DC /* csvjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A092C6A2C1CE41F0072E2DC /* csvjson.json */; };
 		1AED0CA92C15E9EC00EE9ECF /* AllRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CA82C15E9EC00EE9ECF /* AllRecipesViewController.swift */; };
 		1AED0CAB2C15E9F600EE9ECF /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CAA2C15E9F600EE9ECF /* RecipeViewController.swift */; };
 		1AED0CAD2C15EA0B00EE9ECF /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A092C682C1CE3950072E2DC /* jsonwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonwork.swift; sourceTree = "<group>"; };
+		1A092C6A2C1CE41F0072E2DC /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
 		1AED0CA82C15E9EC00EE9ECF /* AllRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesViewController.swift; sourceTree = "<group>"; };
 		1AED0CAA2C15E9F600EE9ECF /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -60,6 +64,7 @@
 			children = (
 				CA0E3F962C172C1D000FC240 /* Ingredient.swift */,
 				1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */,
+				1A092C682C1CE3950072E2DC /* jsonwork.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 		CA68BB3B2C14522800BC9633 /* RecipeFinder */ = {
 			isa = PBXGroup;
 			children = (
+				1A092C6A2C1CE41F0072E2DC /* csvjson.json */,
 				CA114A032C1B523C0009DFB8 /* yolov8s.mlmodel */,
 				CA0E3F982C172C41000FC240 /* ViewController */,
 				CA0E3F952C172C10000FC240 /* Model */,
@@ -186,6 +192,7 @@
 			files = (
 				CA68BB462C14522900BC9633 /* Assets.xcassets in Resources */,
 				CA5DAE502C19DE0F00DA8DCC /* .gitignore in Resources */,
+				1A092C6B2C1CE41F0072E2DC /* csvjson.json in Resources */,
 				CA68BB492C14522900BC9633 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +206,7 @@
 			files = (
 				1AED0CA92C15E9EC00EE9ECF /* AllRecipesViewController.swift in Sources */,
 				CA0E3F9F2C173794000FC240 /* IngredientTableViewCell.swift in Sources */,
+				1A092C692C1CE3950072E2DC /* jsonwork.swift in Sources */,
 				CACB42F22C19CCFF005AB0DF /* ButtonFactory.swift in Sources */,
 				CA114A042C1B523C0009DFB8 /* yolov8s.mlmodel in Sources */,
 				CA0E3F972C172C1D000FC240 /* Ingredient.swift in Sources */,
