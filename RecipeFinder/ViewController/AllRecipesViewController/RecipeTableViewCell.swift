@@ -13,7 +13,6 @@ class RecipeTableViewCell: UITableViewCell {
     
     var recipe: Recipe?
     var nameLabel = UILabel()
-    var cellImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,34 +26,33 @@ class RecipeTableViewCell: UITableViewCell {
     
     private func commonInit() {
         contentView.addSubview(nameLabel)
-        contentView.addSubview(cellImageView)
-        
         setupConstraints()
+        setupAppearance()
     }
     
     func configure(with recipe: Recipe) {
         self.recipe = recipe
-        
-        nameLabel.text = recipe.name
-        cellImageView.image = recipe.image
+        nameLabel.text = recipe.formattedName
     }
     
     private func setupConstraints() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cellImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        cellImageView.contentMode = .scaleAspectFit
-        cellImageView.clipsToBounds = true
         
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: cellImageView.leadingAnchor, constant: -16),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
-            cellImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            cellImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            cellImageView.widthAnchor.constraint(equalToConstant: 60),
-            cellImageView.heightAnchor.constraint(equalToConstant: 60)
+            nameLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8),
+            nameLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8)
         ])
+    }
+    
+    private func setupAppearance() {
+        nameLabel.textColor = UIColor { traitCollection in
+            return traitCollection.userInterfaceStyle == .dark ? .white : .black
+        }
+        contentView.backgroundColor = UIColor { traitCollection in
+            return traitCollection.userInterfaceStyle == .dark ? .black : .white
+        }
     }
 }

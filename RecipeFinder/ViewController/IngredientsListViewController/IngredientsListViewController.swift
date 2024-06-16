@@ -121,7 +121,9 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     @objc func searchTapped() {
-        let allRecipesViewController = AllRecipesViewController()
+        let matchingRecipes = RecipeService.shared.findRecipes(byIngredients: ingredients)
+        let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
+        
         navigationController?.pushViewController(allRecipesViewController, animated: true)
     }
 

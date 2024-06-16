@@ -70,7 +70,11 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        x.fetchSubjectsFromFile()
+        
+        DispatchQueue.global(qos: .background).async {
+            RecipeService.shared.loadRecipes()
+        }
+        
         view.backgroundColor = .white
         setupSubviews()
         setupConstraints()
