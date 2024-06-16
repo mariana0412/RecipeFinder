@@ -15,13 +15,11 @@ class RecipeViewController: UIViewController {
     var recipeDescription = UILabel()
     var imageView = UIImageView()
     
-    
     init(recipe: Recipe) {
         self.recipe = recipe
-        label.text = recipe.name
-        //description todo
-        imageView.image = recipe.image
-        recipeDescription.text = ("lorem ilorem ipsum lorem ipsumlorem ipsumlorem ipsum   lorem ipsumlorem ipsum  lorem ipsumpsumlorem ipsum lorem ipsum")
+        label.text = recipe.formattedName
+        recipeDescription.text = recipe.steps
+        
         super.init(nibName: nil, bundle: nil)
         
     }
@@ -34,8 +32,6 @@ class RecipeViewController: UIViewController {
         super.viewDidLoad()
         
         layoutViews()
-        
-        print(recipe?.name)
     }
     
     func layoutViews() {
@@ -50,7 +46,7 @@ class RecipeViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             

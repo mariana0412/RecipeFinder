@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import Vision
+import CoreML
 
 class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -18,7 +20,6 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textColor = .black
-        
         return label
     }()
     
@@ -29,7 +30,6 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
-        
         return label
     }()
     
@@ -38,7 +38,6 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "products_on_the_table")
-        
         return imageView
     }()
     
@@ -52,16 +51,31 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .systemBlue
         label.isUserInteractionEnabled = true
-        
         return label
+    }()
+
+    lazy var coreMLRequest: VNCoreMLRequest? = {
+        do {
+            let model = try yolov8s(configuration: MLModelConfiguration()).model
+            let vnCoreMLModel = try VNCoreMLModel(for: model)
+            let request = VNCoreMLRequest(model: vnCoreMLModel)
+            request.imageCropAndScaleOption = .scaleFill
+            return request
+        } catch let error {
+            print("Failed to load model: \(error)")
+            return nil
+        }
     }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        DispatchQueue.global(qos: .background).async {
+            RecipeService.shared.loadRecipes()
+        }
         
+        view.backgroundColor = .white
         setupSubviews()
         setupConstraints()
         setupActions()
@@ -80,18 +94,14 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         NSLayoutConstraint.activate([
             welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             welcomeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
-            
             instructionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             instructionsLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 60),
-            
             productImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             productImageView.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 10),
             productImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
             productImageView.heightAnchor.constraint(equalToConstant: 320),
-            
             takePictureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
-            
             manualInputLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             manualInputLabel.topAnchor.constraint(equalTo: takePictureButton.bottomAnchor, constant: 20)
         ])
@@ -99,7 +109,6 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     private func setupActions() {
         takePictureButton.addTarget(self, action: #selector(takePictureTapped), for: .touchUpInside)
-        
         let manualInputTapGesture = UITapGestureRecognizer(target: self, action: #selector(manualInputTapped))
         manualInputLabel.addGestureRecognizer(manualInputTapGesture)
     }
@@ -134,18 +143,65 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         performYOLODetection(on: image)
     }
     
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Helper Methods
     private func performYOLODetection(on image: UIImage) {
-        // YOLO detection
+        guard let coreMLRequest = coreMLRequest else {
+            print("Failed to create VNCoreMLRequest")
+            return
+        }
         
-        // Redirect to IngredientsListController
-        let ingredientsListController = IngredientsListViewController()
-//        ingredientsListController.ingredients = [Ingredient(name: "Sample Ingredient 1"), Ingredient(name: "Sample Ingredient 2")]
-        navigationController?.pushViewController(ingredientsListController, animated: true)
+        guard let ciImage = CIImage(image: image) else {
+            print("Failed to create CIImage")
+            return
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+        
+        do {
+            try handler.perform([coreMLRequest])
+            
+            guard let results = coreMLRequest.results as? [VNRecognizedObjectObservation] else {
+                print("Failed to get results from VNCoreMLRequest")
+                return
+            }
+            
+            let ingredients = processResults(results: results)
+            
+            // Redirect to IngredientsListController
+            let ingredientsListController = IngredientsListViewController(ingredients: ingredients)
+            navigationController?.pushViewController(ingredientsListController, animated: true)
+        } catch {
+            print("Failed to perform VNImageRequestHandler: \(error)")
+        }
+    }
+    
+    private func processResults(results: [VNRecognizedObjectObservation], minConfidence: VNConfidence = 0.5) -> [Ingredient] {
+        var detectedObjects: [String: VNConfidence] = [:]
+        var ingredients: [Ingredient] = []
+        
+        for result in results {
+            let confidence = result.confidence
+            guard confidence >= minConfidence else { continue }
+            
+            if let label = result.labels.first?.identifier {
+                if let existingConfidence = detectedObjects[label], existingConfidence >= confidence {
+                    continue
+                }
+                detectedObjects[label] = confidence
+                ingredients.append(Ingredient(name: label))
+            }
+        }
+        
+        for (label, confidence) in detectedObjects {
+            print("Object: \(label), Confidence: \(confidence)")
+        }
+        
+        return ingredients
     }
     
 }

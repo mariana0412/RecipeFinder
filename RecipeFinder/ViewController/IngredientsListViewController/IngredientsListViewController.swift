@@ -17,10 +17,20 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     
     // MARK: - Properties
     private var tableView: UITableView = UITableView()
-    private var ingredients: [Ingredient] = [Ingredient(name: "milk"), Ingredient(name: "juice"), Ingredient(name: "potato")]
+    private var ingredients: [Ingredient] = []
     private var searchButton: UIButton = ButtonFactory.makeButton(withTitle: "Search", imageName: "magnifyingglass")
     private var addButton: UIButton = UIButton(type: .system)
 
+    // MARK: - Custom Initializer
+    init(ingredients: [Ingredient] = []) {
+        super.init(nibName: nil, bundle: nil)
+        self.ingredients = ingredients
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +121,9 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     @objc func searchTapped() {
-        let allRecipesViewController = AllRecipesViewController()
+        let matchingRecipes = RecipeService.shared.findRecipes(byIngredients: ingredients)
+        let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
+        
         navigationController?.pushViewController(allRecipesViewController, animated: true)
     }
 
