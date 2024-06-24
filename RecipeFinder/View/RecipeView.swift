@@ -16,6 +16,8 @@ class RecipeView: UIView {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.numberOfLines = 0
+        label.textColor = UIColor(named: "LabelColor")
+        
         return label
     }()
     
@@ -25,6 +27,8 @@ class RecipeView: UIView {
         label.textAlignment = .justified
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
+        label.textColor = UIColor(named: "LabelColor")
+        
         return label
     }()
     
@@ -32,6 +36,8 @@ class RecipeView: UIView {
         let imageView = UIImageView(image: UIImage(systemName: "clock"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = UIColor(named: "LabelColor")
+        
         return imageView
     }()
     
@@ -39,6 +45,8 @@ class RecipeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor(named: "LabelColor")
+        
         return label
     }()
     
@@ -46,6 +54,9 @@ class RecipeView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setTitleColor(UIColor(named: "LabelColor"), for: .normal)
+        button.tintColor = UIColor(named: "ButtonColor")
+        
         return button
     }()
     
@@ -54,6 +65,8 @@ class RecipeView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.text = "Steps:"
+        label.textColor = UIColor(named: "LabelColor")
+        
         return label
     }()
     
@@ -63,25 +76,30 @@ class RecipeView: UIView {
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.isEditable = false
         textView.isScrollEnabled = true
+        textView.textColor = UIColor(named: "LabelColor")
+        textView.backgroundColor = UIColor(named: "Background Color")
+        
         return textView
     }()
     
-    // Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupSubviews()
         setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        backgroundColor = UIColor(named: "BackgroundColor")
+        
         setupSubviews()
         setupConstraints()
     }
     
     // MARK: - Setup Methods
     private func setupSubviews() {
-        backgroundColor = .white
         addSubview(label)
         addSubview(recipeDescription)
         addSubview(timerIcon)

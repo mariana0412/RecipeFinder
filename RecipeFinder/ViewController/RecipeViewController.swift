@@ -30,12 +30,16 @@ class RecipeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureView()
         setupActions()
     }
     
     // MARK: - Helper Methods
     private func configureView() {
+        view.backgroundColor = UIColor(named: "BackgroundColor")
+        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "LabelColor")
+        
         guard let recipe = recipe else { return }
         recipeView.label.text = recipe.formattedName
         recipeView.recipeDescription.text = recipe.description
@@ -50,7 +54,6 @@ class RecipeViewController: UIViewController {
     
     @objc private func toggleFavorite() {
         recipe?.isFavorite.toggle()
-        print(recipe)
         updateFavoriteButton()
         
         // Save the updated favorite status to persistent storage
