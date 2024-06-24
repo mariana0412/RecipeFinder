@@ -35,6 +35,8 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
         welcomeView.takePictureButton.addTarget(self, action: #selector(takePictureTapped), for: .touchUpInside)
         let manualInputTapGesture = UITapGestureRecognizer(target: self, action: #selector(manualInputTapped))
         welcomeView.manualInputLabel.addGestureRecognizer(manualInputTapGesture)
+        let favoritesTapGesture = UITapGestureRecognizer(target: self, action: #selector(favoritesTapped))
+        welcomeView.favoritesLabel.addGestureRecognizer(favoritesTapGesture)
     }
     
     // MARK: - Action Methods
@@ -54,6 +56,12 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
     @objc func manualInputTapped() {
         let ingredientsListController = IngredientsListViewController()
         navigationController?.pushViewController(ingredientsListController, animated: true)
+    }
+    
+    @objc func favoritesTapped() {
+        let favoriteRecipes = RecipeService.shared.recipes.filter { $0.isFavorite }
+        let favoriteRecipesController = AllRecipesViewController(recipes: favoriteRecipes)
+        navigationController?.pushViewController(favoriteRecipesController, animated: true)
     }
     
     // MARK: - Helper Methods

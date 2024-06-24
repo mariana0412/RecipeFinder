@@ -51,6 +51,17 @@ class WelcomeView: UIView {
         return label
     }()
     
+    let favoritesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "View Favorite Recipes"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .systemBlue
+        label.isUserInteractionEnabled = true
+        return label
+    }()
+    
     // Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,6 +82,7 @@ class WelcomeView: UIView {
         addSubview(productImageView)
         addSubview(takePictureButton)
         addSubview(manualInputLabel)
+        addSubview(favoritesLabel)
     }
     
     private func setupConstraints() {
@@ -86,7 +98,9 @@ class WelcomeView: UIView {
             takePictureButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
             manualInputLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            manualInputLabel.topAnchor.constraint(equalTo: takePictureButton.bottomAnchor, constant: 20)
+            manualInputLabel.topAnchor.constraint(equalTo: takePictureButton.bottomAnchor, constant: 20),
+            favoritesLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            favoritesLabel.topAnchor.constraint(equalTo: manualInputLabel.bottomAnchor, constant: 20)
         ])
     }
 }
