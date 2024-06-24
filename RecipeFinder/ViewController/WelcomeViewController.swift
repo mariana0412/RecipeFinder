@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Vision
 import CoreML
-
+import Photos
 class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Properties
@@ -56,7 +56,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     lazy var coreMLRequest: VNCoreMLRequest? = {
         do {
-            let model = try yolov8s(configuration: MLModelConfiguration()).model
+            let model = try RecipeFinderML3080(configuration: MLModelConfiguration()).model
             let vnCoreMLModel = try VNCoreMLModel(for: model)
             let request = VNCoreMLRequest(model: vnCoreMLModel)
             request.imageCropAndScaleOption = .scaleFill
@@ -160,6 +160,13 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
             return
         }
         
+        // Resize the image to 299x299
+//        let resizedImage = resizeImage(image: image, targetSize: CGSize(width: 299, height: 299))
+//        guard let ciResizedImage = CIImage(image: resizedImage) else {
+//            print("Failed to create CIImage from resized image")
+//            return
+//        }
+        
         let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
         
         do {
@@ -170,7 +177,10 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
                 return
             }
             
+            print("results: ", results)
+            
             let ingredients = processResults(results: results)
+            print(ingredients)
             
             // Redirect to IngredientsListController
             let ingredientsListController = IngredientsListViewController(ingredients: ingredients)
@@ -179,8 +189,9 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
             print("Failed to perform VNImageRequestHandler: \(error)")
         }
     }
+
     
-    private func processResults(results: [VNRecognizedObjectObservation], minConfidence: VNConfidence = 0.5) -> [Ingredient] {
+    private func processResults(results: [VNRecognizedObjectObservation], minConfidence: VNConfidence = 0.1) -> [Ingredient] {
         var detectedObjects: [String: VNConfidence] = [:]
         var ingredients: [Ingredient] = []
         
@@ -203,5 +214,19 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         return ingredients
     }
-    
+
+    private func saveImageToPhotos(_ image: UIImage) {
+        PHPhotoLibrary.requestAuthorization { status in
+            guard status == .authorized else { return }
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
+            }, completionHandler: { success, error in
+                if let error = error {
+                    print("Failed to save image: \(error)")
+                } else {
+                    print("Successfully saved image to photo library")
+                }
+            })
+        }
+    }
 }
