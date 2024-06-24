@@ -50,7 +50,7 @@ class RecipeTableViewCell: UITableViewCell {
     }
     
     private func setupAppearance() {
-        nameLabel.textColor = UIColor(named: "LabelColor")
+        nameLabel.textColor = UIColor(named: "LabelsColor")
         contentView.backgroundColor = UIColor(named: "BackgroundColor")
     }
 }

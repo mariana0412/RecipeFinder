@@ -39,7 +39,7 @@ class RecipeViewController: UIViewController {
     // MARK: - Helper Methods
     private func configureView() {
         view.backgroundColor = UIColor(named: "BackgroundColor")
-        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "LabelColor")
+        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "LabelsColor")
         
         guard let recipe = recipe else { return }
         recipeView.label.text = recipe.formattedName

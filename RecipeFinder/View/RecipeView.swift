@@ -16,7 +16,7 @@ class RecipeView: UIView {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.numberOfLines = 0
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColor")
         
         return label
     }()
@@ -27,7 +27,7 @@ class RecipeView: UIView {
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColor")
         label.text = "Ingredients:"
         
         return label
@@ -39,7 +39,7 @@ class RecipeView: UIView {
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColor")
         
         return label
     }()
@@ -50,7 +50,7 @@ class RecipeView: UIView {
         label.textAlignment = .justified
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColor")
         
         return label
     }()
@@ -59,7 +59,7 @@ class RecipeView: UIView {
         let imageView = UIImageView(image: UIImage(systemName: "clock"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = UIColor(named: "LabelColor")
+        imageView.tintColor = UIColor(named: "LabelsColor")
         
         return imageView
     }()
@@ -68,7 +68,7 @@ class RecipeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColor")
         
         return label
     }()
@@ -77,7 +77,7 @@ class RecipeView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.setTitleColor(UIColor(named: "LabelColor"), for: .normal)
+        button.setTitleColor(UIColor(named: "LabelsColor"), for: .normal)
         button.tintColor = UIColor(named: "ButtonColor")
         
         return button
@@ -88,7 +88,7 @@ class RecipeView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.text = "Steps:"
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColor")
         
         return label
     }()
@@ -99,7 +99,7 @@ class RecipeView: UIView {
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.isEditable = false
         textView.isScrollEnabled = true
-        textView.textColor = UIColor(named: "LabelColor")
+        textView.textColor = UIColor(named: "LabelsColor")
         textView.backgroundColor = UIColor(named: "Background Color")
         
         return textView

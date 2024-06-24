@@ -16,7 +16,7 @@ class WelcomeView: UIView {
         label.text = "Welcome to RecipeFinder!"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColors")
         return label
     }()
     
@@ -26,7 +26,7 @@ class WelcomeView: UIView {
         label.text = "Please, take a picture of your products"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor(named: "LabelColor")
+        label.textColor = UIColor(named: "LabelsColor")
         return label
     }()
     

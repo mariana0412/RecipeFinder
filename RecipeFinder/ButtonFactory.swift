@@ -15,7 +15,7 @@ class ButtonFactory {
         var configuration = UIButton.Configuration.filled()
         configuration.title = " " + title
         configuration.baseForegroundColor = UIColor(named: "BackgroundColor")
-        configuration.baseBackgroundColor = UIColor(named: "LabelColor")
+        configuration.baseBackgroundColor = UIColor(named: "LabelsColor")
         configuration.cornerStyle = .medium
         configuration.image = UIImage(systemName: imageName)
         configuration.imagePadding = 10

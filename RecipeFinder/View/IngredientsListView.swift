@@ -23,7 +23,7 @@ class IngredientsListView: UIView {
     let addButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Add", for: .normal)
-        button.setTitleColor(UIColor(named: "LabelColor"), for: .normal)
+        button.setTitleColor(UIColor(named: "LabelsColor"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button

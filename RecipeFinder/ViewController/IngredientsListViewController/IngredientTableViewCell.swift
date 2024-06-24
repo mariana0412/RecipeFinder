@@ -14,7 +14,7 @@ class IngredientTableViewCell: UITableViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
-        textField.textColor = UIColor(named: "LabelColor")
+        textField.textColor = UIColor(named: "LabelsColor")
         textField.backgroundColor = UIColor(named: "TextFieldColor")
         
         return textField
