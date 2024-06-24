@@ -29,6 +29,7 @@ class AllRecipesViewController: UIViewController {
     override func loadView() {
         self.view = allRecipesView
         
+        title = "Recipes"
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationController?.navigationBar.tintColor = UIColor(named: "ButtonColor")
     }
@@ -81,6 +82,6 @@ extension AllRecipesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        80
+        60
     }
 }
