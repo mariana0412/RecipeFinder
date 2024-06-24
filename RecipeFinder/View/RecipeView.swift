@@ -22,10 +22,48 @@ class RecipeView: UIView {
     let recipeDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
+        label.textAlignment = .justified
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
         return label
+    }()
+    
+    let timerIcon: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "clock"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    let cookingTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    let favoriteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        return button
+    }()
+    
+    let stepsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.text = "Steps:"
+        return label
+    }()
+    
+    let stepsTextView: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.isEditable = false
+        textView.isScrollEnabled = true
+        return textView
     }()
     
     // Initializer
@@ -43,8 +81,14 @@ class RecipeView: UIView {
     
     // MARK: - Setup Methods
     private func setupSubviews() {
+        backgroundColor = .white
         addSubview(label)
         addSubview(recipeDescription)
+        addSubview(timerIcon)
+        addSubview(cookingTimeLabel)
+        addSubview(favoriteButton)
+        addSubview(stepsLabel)
+        addSubview(stepsTextView)
     }
     
     private func setupConstraints() {
@@ -54,10 +98,28 @@ class RecipeView: UIView {
             label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            recipeDescription.centerXAnchor.constraint(equalTo: centerXAnchor),
-            recipeDescription.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
+            timerIcon.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
+            timerIcon.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            timerIcon.widthAnchor.constraint(equalToConstant: 24),
+            timerIcon.heightAnchor.constraint(equalToConstant: 24),
+            
+            cookingTimeLabel.centerYAnchor.constraint(equalTo: timerIcon.centerYAnchor),
+            cookingTimeLabel.leadingAnchor.constraint(equalTo: timerIcon.trailingAnchor, constant: 8),
+            
+            favoriteButton.centerYAnchor.constraint(equalTo: timerIcon.centerYAnchor),
+            favoriteButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            recipeDescription.topAnchor.constraint(equalTo: timerIcon.bottomAnchor, constant: 20),
             recipeDescription.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             recipeDescription.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            stepsLabel.topAnchor.constraint(equalTo: recipeDescription.bottomAnchor, constant: 20),
+            stepsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            
+            stepsTextView.topAnchor.constraint(equalTo: stepsLabel.bottomAnchor, constant: 10),
+            stepsTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            stepsTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            stepsTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }

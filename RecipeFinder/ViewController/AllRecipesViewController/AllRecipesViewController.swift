@@ -27,7 +27,14 @@ class AllRecipesViewController: UIViewController {
     override func loadView() {
         self.view = allRecipesView
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        recipes = RecipeService.shared.recipes
+        allRecipesView.recipesTable.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

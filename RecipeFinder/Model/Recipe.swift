@@ -17,7 +17,7 @@ struct Recipe: Codable {
     let description: String
     let ingredients: [String]
     let averageRating: Int
-    let isFavorite: Bool
+    var isFavorite: Bool
 
     var formattedName: String {
         return name.capitalized

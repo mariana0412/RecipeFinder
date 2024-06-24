@@ -23,7 +23,7 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         
         DispatchQueue.global(qos: .background).async {
-            RecipeService.shared.loadRecipes()
+            let _ = RecipeService.shared.recipes
         }
         
         view.backgroundColor = .white
