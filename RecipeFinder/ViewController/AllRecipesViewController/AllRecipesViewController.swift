@@ -17,6 +17,10 @@ class AllRecipesViewController: UIViewController {
         let control = UISegmentedControl(items: ["Default", "By Time"])
         control.selectedSegmentIndex = 0
         control.translatesAutoresizingMaskIntoConstraints = false
+        control.backgroundColor = UIColor(named: "BackgroundColor")
+        control.tintColor = UIColor(named: "LabelColor")
+        control.selectedSegmentTintColor = UIColor(named: "TextFieldColor")
+        
         return control
     }()
     
