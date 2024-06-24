@@ -33,11 +33,12 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: - Setup Methods
     private func setupActions() {
         welcomeView.takePictureButton.addTarget(self, action: #selector(takePictureTapped), for: .touchUpInside)
-        let manualInputTapGesture = UITapGestureRecognizer(target: self, action: #selector(manualInputTapped))
-        welcomeView.manualInputLabel.addGestureRecognizer(manualInputTapGesture)
-        let favoritesTapGesture = UITapGestureRecognizer(target: self, action: #selector(favoritesTapped))
-        welcomeView.favoritesLabel.addGestureRecognizer(favoritesTapGesture)
-    }
+
+        welcomeView.manualInputButton.addTarget(self, action: #selector(manualInputTapped), for: .touchUpInside)
+    
+        welcomeView.favoritesButton.addTarget(self, action: #selector(favoritesTapped), for: .touchUpInside)
+        
+        }
     
     // MARK: - Action Methods
     @objc func takePictureTapped() {
@@ -74,7 +75,6 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
             self.navigationController?.pushViewController(ingredientsListController, animated: true)
         }
     }
-
 }
 
 extension WelcomeViewController: UIImagePickerControllerDelegate {
@@ -88,9 +88,7 @@ extension WelcomeViewController: UIImagePickerControllerDelegate {
         performIngredientDetection(on: image)
     }
     
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
