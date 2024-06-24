@@ -13,9 +13,8 @@ class AllRecipesView: UIView {
     let recipesTable: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UIColor { traitCollection in
-            return traitCollection.userInterfaceStyle == .dark ? .black : .white
-        }
+        tableView.backgroundColor = UIColor(named: "BackgroundColor")
+        
         return tableView
     }()
     

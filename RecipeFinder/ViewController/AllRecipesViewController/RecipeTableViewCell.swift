@@ -31,6 +31,8 @@ class RecipeTableViewCell: UITableViewCell {
     }
     
     func configure(with recipe: Recipe) {
+        self.backgroundColor = UIColor(named: "BackgroundColor")
+        self.accessoryType = .disclosureIndicator
         self.recipe = recipe
         nameLabel.text = recipe.formattedName
     }
@@ -48,11 +50,7 @@ class RecipeTableViewCell: UITableViewCell {
     }
     
     private func setupAppearance() {
-        nameLabel.textColor = UIColor { traitCollection in
-            return traitCollection.userInterfaceStyle == .dark ? .white : .black
-        }
-        contentView.backgroundColor = UIColor { traitCollection in
-            return traitCollection.userInterfaceStyle == .dark ? .black : .white
-        }
+        nameLabel.textColor = UIColor(named: "LabelColor")
+        contentView.backgroundColor = UIColor(named: "BackgroundColor")
     }
 }
