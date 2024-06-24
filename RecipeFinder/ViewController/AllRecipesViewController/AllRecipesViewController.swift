@@ -15,7 +15,9 @@ class AllRecipesViewController: UIViewController {
         
     // MARK: - Custom Initializer
     init(recipes: [Recipe]) {
-        self.recipes = recipes
+        let sortedRecipes = recipes.sorted { $0.minutes < $1.minutes }
+        self.recipes = sortedRecipes
+        
         super.init(nibName: nil, bundle: nil)
     }
     

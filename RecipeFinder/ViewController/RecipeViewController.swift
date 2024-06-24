@@ -43,7 +43,7 @@ class RecipeViewController: UIViewController {
         guard let recipe = recipe else { return }
         recipeView.label.text = recipe.formattedName
         recipeView.recipeDescription.text = recipe.description
-        recipeView.cookingTimeLabel.text = "\(recipe.minutes) minutes"
+        recipeView.cookingTimeLabel.text = "\(recipe.minutes) minute(s)"
         recipeView.stepsTextView.text = recipe.steps.enumerated().map { "\($0 + 1). \($1)" }.joined(separator: "\n\n")
         updateFavoriteButton()
     }
