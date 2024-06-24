@@ -22,6 +22,11 @@
 		CA68BB462C14522900BC9633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA68BB452C14522900BC9633 /* Assets.xcassets */; };
 		CA68BB492C14522900BC9633 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CA68BB482C14522900BC9633 /* Base */; };
 		CA85C63F2C29795F00712EF3 /* RecipeFinderML3080.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CA85C63E2C29795E00712EF3 /* RecipeFinderML3080.mlmodel */; };
+		CA85C6412C29827A00712EF3 /* IngredientDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85C6402C29827A00712EF3 /* IngredientDetectionService.swift */; };
+		CA85C6492C2984D300712EF3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85C6482C2984D300712EF3 /* WelcomeView.swift */; };
+		CA85C64B2C29868C00712EF3 /* IngredientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85C64A2C29868C00712EF3 /* IngredientsListView.swift */; };
+		CA85C64D2C29889A00712EF3 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85C64C2C29889A00712EF3 /* AllRecipesView.swift */; };
+		CA85C64F2C298AD900712EF3 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85C64E2C298AD900712EF3 /* RecipeView.swift */; };
 		CACB42F02C17457E005AB0DF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB42EF2C17457E005AB0DF /* WelcomeViewController.swift */; };
 		CACB42F22C19CCFF005AB0DF /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +49,11 @@
 		CA68BB482C14522900BC9633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA68BB4A2C14522900BC9633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA85C63E2C29795E00712EF3 /* RecipeFinderML3080.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RecipeFinderML3080.mlmodel; sourceTree = "<group>"; };
+		CA85C6402C29827A00712EF3 /* IngredientDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetectionService.swift; sourceTree = "<group>"; };
+		CA85C6482C2984D300712EF3 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		CA85C64A2C29868C00712EF3 /* IngredientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListView.swift; sourceTree = "<group>"; };
+		CA85C64C2C29889A00712EF3 /* AllRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesView.swift; sourceTree = "<group>"; };
+		CA85C64E2C298AD900712EF3 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		CACB42EF2C17457E005AB0DF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				CA2347072C1F4AA3009D9645 /* RecipeService.swift */,
+				CA85C6402C29827A00712EF3 /* IngredientDetectionService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -124,13 +135,14 @@
 		CA68BB3B2C14522800BC9633 /* RecipeFinder */ = {
 			isa = PBXGroup;
 			children = (
-				CA85C63E2C29795E00712EF3 /* RecipeFinderML3080.mlmodel */,
 				CA0E3F952C172C10000FC240 /* Model */,
+				CA85C6472C2984C800712EF3 /* View */,
 				CA0E3F982C172C41000FC240 /* ViewController */,
 				CA2347042C1F4A1F009D9645 /* Service */,
 				CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */,
 				CA68BB3C2C14522800BC9633 /* AppDelegate.swift */,
 				CA68BB3E2C14522800BC9633 /* SceneDelegate.swift */,
+				CA85C63E2C29795E00712EF3 /* RecipeFinderML3080.mlmodel */,
 				CA2347052C1F4A69009D9645 /* recipes.json */,
 				CA68BB452C14522900BC9633 /* Assets.xcassets */,
 				CA68BB472C14522900BC9633 /* LaunchScreen.storyboard */,
@@ -138,6 +150,17 @@
 				CA5DAE4F2C19DE0F00DA8DCC /* .gitignore */,
 			);
 			path = RecipeFinder;
+			sourceTree = "<group>";
+		};
+		CA85C6472C2984C800712EF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA85C6482C2984D300712EF3 /* WelcomeView.swift */,
+				CA85C64A2C29868C00712EF3 /* IngredientsListView.swift */,
+				CA85C64C2C29889A00712EF3 /* AllRecipesView.swift */,
+				CA85C64E2C298AD900712EF3 /* RecipeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA85C64F2C298AD900712EF3 /* RecipeView.swift in Sources */,
 				1AED0CA92C15E9EC00EE9ECF /* AllRecipesViewController.swift in Sources */,
 				CA85C63F2C29795F00712EF3 /* RecipeFinderML3080.mlmodel in Sources */,
 				CA0E3F9F2C173794000FC240 /* IngredientTableViewCell.swift in Sources */,
@@ -219,8 +243,12 @@
 				CA0E3F972C172C1D000FC240 /* Ingredient.swift in Sources */,
 				CA0E3FA12C1739EE000FC240 /* IngredientsListViewController.swift in Sources */,
 				CACB42F02C17457E005AB0DF /* WelcomeViewController.swift in Sources */,
+				CA85C64D2C29889A00712EF3 /* AllRecipesView.swift in Sources */,
+				CA85C64B2C29868C00712EF3 /* IngredientsListView.swift in Sources */,
 				CA68BB3D2C14522800BC9633 /* AppDelegate.swift in Sources */,
+				CA85C6412C29827A00712EF3 /* IngredientDetectionService.swift in Sources */,
 				CA2347082C1F4AA3009D9645 /* RecipeService.swift in Sources */,
+				CA85C6492C2984D300712EF3 /* WelcomeView.swift in Sources */,
 				1AED0CAF2C15EC7000EE9ECF /* RecipeTableViewCell.swift in Sources */,
 				1AED0CAD2C15EA0B00EE9ECF /* Recipe.swift in Sources */,
 				CA68BB3F2C14522800BC9633 /* SceneDelegate.swift in Sources */,

@@ -6,21 +6,14 @@
 //
 
 import UIKit
-import SwiftUI
-
 
 class AllRecipesViewController: UIViewController {
     
+    // MARK: - Properties
+    let allRecipesView = AllRecipesView()
     var recipes: [Recipe]
         
-    var recipesTable: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = UIColor { traitCollection in
-            return traitCollection.userInterfaceStyle == .dark ? .black : .white
-        }
-        return tableView
-    }()
-    
+    // MARK: - Custom Initializer
     init(recipes: [Recipe]) {
         self.recipes = recipes
         super.init(nibName: nil, bundle: nil)
@@ -30,31 +23,28 @@ class AllRecipesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    override func loadView() {
+        self.view = allRecipesView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpTable()
     }
     
+    // MARK: - Setup Methods
     private func setUpTable() {
-        recipesTable.delegate = self
-        recipesTable.dataSource = self
+        allRecipesView.recipesTable.delegate = self
+        allRecipesView.recipesTable.dataSource = self
         
-        recipesTable.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeCell")
-        view.addSubview(recipesTable)
-        
-        recipesTable.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            recipesTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            recipesTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            recipesTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            recipesTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -0),
-        ])
+        allRecipesView.recipesTable.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeCell")
     }
-    
 }
 
-extension AllRecipesViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension AllRecipesViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -65,19 +55,21 @@ extension AllRecipesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = recipesTable.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeTableViewCell
         cell.configure(with: recipes[indexPath.row])
         
         return cell
     }
+}
+
+// MARK: - UITableViewDelegate
+extension AllRecipesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(RecipeViewController(recipe: recipes[indexPath.row]), animated: true)
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
     }
 }
-

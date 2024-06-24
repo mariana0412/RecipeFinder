@@ -5,10 +5,9 @@
 //  Created by Mariana Piz on 10.06.2024.
 //
 
-import Foundation
 import UIKit
 
-class IngredientsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class IngredientsListViewController: UIViewController {
     
     // MARK: - Constants
     struct Const {
@@ -16,10 +15,8 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     // MARK: - Properties
-    private var tableView: UITableView = UITableView()
+    let ingredientsListView = IngredientsListView()
     private var ingredients: [Ingredient] = []
-    private var searchButton: UIButton = ButtonFactory.makeButton(withTitle: "Search", imageName: "magnifyingglass")
-    private var addButton: UIButton = UIButton(type: .system)
 
     // MARK: - Custom Initializer
     init(ingredients: [Ingredient] = []) {
@@ -32,61 +29,34 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     // MARK: - Lifecycle
+    override func loadView() {
+        self.view = ingredientsListView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupSubviews()
-        setupConstraints()
+           
         setupNavigationBar()
         setupActions()
+        setupTableView()
     }
     
     // MARK: - Setup Methods
-    private func setupSubviews() {
-        view.addSubview(tableView)        
-        view.addSubview(searchButton)
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: Const.cellReuseIdentifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        addButton.setTitle("Add", for: .normal)
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
-        headerView.addSubview(addButton)
-        tableView.tableHeaderView = headerView
-    }
-    
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: searchButton.topAnchor, constant: -10),
-            
-            addButton.centerXAnchor.constraint(equalTo: tableView.tableHeaderView!.centerXAnchor),
-            addButton.centerYAnchor.constraint(equalTo: tableView.tableHeaderView!.centerYAnchor),
-            addButton.heightAnchor.constraint(equalToConstant: 50),
-            addButton.widthAnchor.constraint(equalTo: tableView.tableHeaderView!.widthAnchor, constant: -40),
-            
-            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            searchButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+    private func setupTableView() {
+        ingredientsListView.tableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: Const.cellReuseIdentifier)
+        ingredientsListView.tableView.delegate = self
+        ingredientsListView.tableView.dataSource = self
     }
     
     private func setupNavigationBar() {
         title = "Ingredients"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
-        addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
-   }
+    }
     
     private func setupActions() {
-        searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
+        ingredientsListView.searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
+        ingredientsListView.addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
     }
     
     // MARK: - Action Methods
@@ -98,10 +68,10 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
             
             let textField = alert.textFields![0]
             self.ingredients.append(Ingredient(name: textField.text!))
-            self.tableView.reloadData()
+            self.ingredientsListView.tableView.reloadData()
         }
 
-        let cancel = UIAlertAction(title: "cancel", style: .cancel) { (cancel) in }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alert.addAction(cancel)
         alert.addAction(ok)
@@ -110,9 +80,9 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     }
 
     @objc func editTapped() {
-        tableView.setEditing(!tableView.isEditing, animated: true)
+        ingredientsListView.tableView.setEditing(!ingredientsListView.tableView.isEditing, animated: true)
 
-        if tableView.isEditing {
+        if ingredientsListView.tableView.isEditing {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editTapped))
         }
         else {
@@ -122,26 +92,36 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     
     @objc func searchTapped() {
         let matchingRecipes = RecipeService.shared.findRecipes(byIngredients: ingredients)
-        let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
         
-        navigationController?.pushViewController(allRecipesViewController, animated: true)
+        if matchingRecipes.isEmpty {
+            let alert = UIAlertController(title: "No Recipes Found", message: "No recipes found for the given ingredients. Please try adding more ingredients.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
+            navigationController?.pushViewController(allRecipesViewController, animated: true)
+        }
     }
 
     @objc func backTapped() {
         navigationController?.popViewController(animated: true)
     }
+    
+}
 
-    // MARK: - UITableViewDelegate and UITableViewDataSource Methods
+extension IngredientsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
             self.ingredients.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            self.ingredientsListView.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
 
         let swipeActions = UISwipeActionsConfiguration(actions: [delete])
         return swipeActions
     }
-    
+}
+
+extension IngredientsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
     }
@@ -155,5 +135,4 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         }
         return cell
     }
-
 }
