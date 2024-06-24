@@ -14,15 +14,19 @@ class IngredientTableViewCell: UITableViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
+        textField.textColor = UIColor(named: "LabelsColor")
+        textField.backgroundColor = UIColor(named: "TextFieldColor")
         
         return textField
     }()
     
     var ingredientNameChanged: ((String) -> Void)?
     
-    // MARK: - Initializers
+    // MARK: - Custom Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = UIColor(named: "BackgroundColor")
         
         setupSubviews()
         setupConstraints()

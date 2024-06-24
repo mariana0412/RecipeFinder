@@ -13,7 +13,7 @@ import UIKit
 class IngredientDetectionService {
     private lazy var coreMLRequest: VNCoreMLRequest? = {
         do {
-            let model = try RecipeFinderML3080(configuration: MLModelConfiguration()).model
+            let model = try RecipeFinder(configuration: MLModelConfiguration()).model
             let vnCoreMLModel = try VNCoreMLModel(for: model)
             let request = VNCoreMLRequest(model: vnCoreMLModel)
             request.imageCropAndScaleOption = .scaleFill
@@ -52,7 +52,7 @@ class IngredientDetectionService {
         }
     }
     
-    private func processResults(results: [VNRecognizedObjectObservation], minConfidence: VNConfidence = 0.1) -> [Ingredient] {
+    private func processResults(results: [VNRecognizedObjectObservation], minConfidence: VNConfidence = 0.6) -> [Ingredient] {
         var detectedObjects: [String: VNConfidence] = [:]
         var ingredients: [Ingredient] = []
         
@@ -67,10 +67,6 @@ class IngredientDetectionService {
                 detectedObjects[label] = confidence
                 ingredients.append(Ingredient(name: label))
             }
-        }
-        
-        for (label, confidence) in detectedObjects {
-            print("Object: \(label), Confidence: \(confidence)")
         }
         
         return ingredients

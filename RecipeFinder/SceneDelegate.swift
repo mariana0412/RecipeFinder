@@ -19,5 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
         window?.makeKeyAndVisible()
     }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        RecipeService.shared.saveChangesToFile()
+    }
 }
 

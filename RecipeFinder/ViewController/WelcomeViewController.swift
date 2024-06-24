@@ -23,19 +23,22 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         
         DispatchQueue.global(qos: .background).async {
-            RecipeService.shared.loadRecipes()
+            let _ = RecipeService.shared.recipes
         }
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "BackgroundColor")
         setupActions()
     }
     
     // MARK: - Setup Methods
     private func setupActions() {
         welcomeView.takePictureButton.addTarget(self, action: #selector(takePictureTapped), for: .touchUpInside)
-        let manualInputTapGesture = UITapGestureRecognizer(target: self, action: #selector(manualInputTapped))
-        welcomeView.manualInputLabel.addGestureRecognizer(manualInputTapGesture)
-    }
+
+        welcomeView.manualInputButton.addTarget(self, action: #selector(manualInputTapped), for: .touchUpInside)
+    
+        welcomeView.favoritesButton.addTarget(self, action: #selector(favoritesTapped), for: .touchUpInside)
+        
+        }
     
     // MARK: - Action Methods
     @objc func takePictureTapped() {
@@ -56,6 +59,12 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
         navigationController?.pushViewController(ingredientsListController, animated: true)
     }
     
+    @objc func favoritesTapped() {
+        let favoriteRecipes = RecipeService.shared.recipes.filter { $0.isFavorite }
+        let favoriteRecipesController = AllRecipesViewController(recipes: favoriteRecipes)
+        navigationController?.pushViewController(favoriteRecipesController, animated: true)
+    }
+    
     // MARK: - Helper Methods
     private func performIngredientDetection(on image: UIImage) {
         ingredientDetectionService.performDetection(on: image) { [weak self] ingredients in
@@ -66,7 +75,6 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
             self.navigationController?.pushViewController(ingredientsListController, animated: true)
         }
     }
-
 }
 
 extension WelcomeViewController: UIImagePickerControllerDelegate {
@@ -80,9 +88,7 @@ extension WelcomeViewController: UIImagePickerControllerDelegate {
         performIngredientDetection(on: image)
     }
     
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
