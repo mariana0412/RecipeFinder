@@ -30,7 +30,8 @@ class RecipeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.tintColor = UIColor(named: "ButtonColor")
+
         configureView()
         setupActions()
     }

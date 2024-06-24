@@ -28,7 +28,9 @@ class AllRecipesViewController: UIViewController {
     // MARK: - Lifecycle
     override func loadView() {
         self.view = allRecipesView
+        
         view.backgroundColor = UIColor(named: "BackgroundColor")
+        navigationController?.navigationBar.tintColor = UIColor(named: "ButtonColor")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +41,6 @@ class AllRecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
         
         setUpTable()
     }
