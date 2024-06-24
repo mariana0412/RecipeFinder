@@ -12,6 +12,7 @@
 		1AED0CAD2C15EA0B00EE9ECF /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */; };
 		1AED0CAF2C15EC7000EE9ECF /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CAE2C15EC7000EE9ECF /* RecipeTableViewCell.swift */; };
 		CA0C27862C29B7A400299FAC /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0C27852C29B7A300299FAC /* recipes.json */; };
+		CA0C278A2C29FC2700299FAC /* RecipeUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0C27892C29FC2700299FAC /* RecipeUpdateDelegate.swift */; };
 		CA0E3F972C172C1D000FC240 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3F962C172C1D000FC240 /* Ingredient.swift */; };
 		CA0E3F9F2C173794000FC240 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */; };
 		CA0E3FA12C1739EE000FC240 /* IngredientsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */; };
@@ -37,6 +38,7 @@
 		1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		1AED0CAE2C15EC7000EE9ECF /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		CA0C27852C29B7A300299FAC /* recipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
+		CA0C27892C29FC2700299FAC /* RecipeUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUpdateDelegate.swift; sourceTree = "<group>"; };
 		CA0E3F962C172C1D000FC240 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				1AED0CA82C15E9EC00EE9ECF /* AllRecipesViewController.swift */,
 				1AED0CAE2C15EC7000EE9ECF /* RecipeTableViewCell.swift */,
+				CA0C27892C29FC2700299FAC /* RecipeUpdateDelegate.swift */,
 			);
 			path = AllRecipesViewController;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				CA85C63F2C29795F00712EF3 /* RecipeFinderML3080.mlmodel in Sources */,
 				CA0E3F9F2C173794000FC240 /* IngredientTableViewCell.swift in Sources */,
 				CACB42F22C19CCFF005AB0DF /* ButtonFactory.swift in Sources */,
+				CA0C278A2C29FC2700299FAC /* RecipeUpdateDelegate.swift in Sources */,
 				CA0E3F972C172C1D000FC240 /* Ingredient.swift in Sources */,
 				CA0E3FA12C1739EE000FC240 /* IngredientsListViewController.swift in Sources */,
 				CACB42F02C17457E005AB0DF /* WelcomeViewController.swift in Sources */,

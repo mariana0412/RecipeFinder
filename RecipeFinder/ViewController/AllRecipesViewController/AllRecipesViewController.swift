@@ -13,7 +13,6 @@ class AllRecipesViewController: UIViewController {
     let allRecipesView = AllRecipesView()
     var recipes: [Recipe]
     
-    // Segmented control for sorting options
     let sortingControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["Default", "By Time"])
         control.selectedSegmentIndex = 0
@@ -44,6 +43,7 @@ class AllRecipesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         allRecipesView.recipesTable.reloadData()
     }
     
@@ -103,10 +103,21 @@ extension AllRecipesViewController: UITableViewDataSource {
 extension AllRecipesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(RecipeViewController(recipe: recipes[indexPath.row]), animated: true)
+        let recipeViewController = RecipeViewController(recipe: recipes[indexPath.row])
+        recipeViewController.delegate = self
+        navigationController?.pushViewController(recipeViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         60
+    }
+}
+
+extension AllRecipesViewController: RecipeUpdateDelegate {
+    func didUpdateFavoriteStatus(for recipe: Recipe) {
+        if let index = recipes.firstIndex(where: { $0.id == recipe.id }) {
+            recipes[index] = recipe
+            allRecipesView.recipesTable.reloadData()
+        }
     }
 }

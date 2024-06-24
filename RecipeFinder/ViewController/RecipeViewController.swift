@@ -12,6 +12,7 @@ class RecipeViewController: UIViewController {
     // MARK: - Properties
     let recipeView = RecipeView()
     var recipe: Recipe?
+    weak var delegate: RecipeUpdateDelegate?
     
     // MARK: - Custom Initializer
     init(recipe: Recipe) {
@@ -58,9 +59,9 @@ class RecipeViewController: UIViewController {
         recipe?.isFavorite.toggle()
         updateFavoriteButton()
         
-        // Save the updated favorite status to persistent storage
         if let recipe = recipe {
             RecipeService.shared.updateRecipe(recipe)
+            delegate?.didUpdateFavoriteStatus(for: recipe)
         }
     }
     
