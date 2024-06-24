@@ -92,9 +92,15 @@ class IngredientsListViewController: UIViewController {
     
     @objc func searchTapped() {
         let matchingRecipes = RecipeService.shared.findRecipes(byIngredients: ingredients)
-        let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
         
-        navigationController?.pushViewController(allRecipesViewController, animated: true)
+        if matchingRecipes.isEmpty {
+            let alert = UIAlertController(title: "No Recipes Found", message: "No recipes found for the given ingredients. Please try adding more ingredients.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
+            navigationController?.pushViewController(allRecipesViewController, animated: true)
+        }
     }
 
     @objc func backTapped() {
