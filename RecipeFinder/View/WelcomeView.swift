@@ -16,17 +16,17 @@ class WelcomeView: UIView {
         label.text = "Welcome to RecipeFinder!"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.textColor = .black
+        label.textColor = UIColor(named: "LabelColor")
         return label
     }()
     
     let instructionsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Please, take a picture of your products."
+        label.text = "Please, take a picture of your products"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
+        label.textColor = UIColor(named: "LabelColor")
         return label
     }()
     
@@ -46,7 +46,7 @@ class WelcomeView: UIView {
         label.text = "Proceed with manual input"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .systemBlue
+        label.textColor = UIColor(named: "ButtonColor")
         label.isUserInteractionEnabled = true
         return label
     }()
@@ -57,7 +57,7 @@ class WelcomeView: UIView {
         label.text = "View Favorite Recipes"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .systemBlue
+        label.textColor = UIColor(named: "ButtonColor")
         label.isUserInteractionEnabled = true
         return label
     }()

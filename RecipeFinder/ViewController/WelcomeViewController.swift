@@ -26,7 +26,7 @@ class WelcomeViewController: UIViewController, UINavigationControllerDelegate {
             let _ = RecipeService.shared.recipes
         }
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "BackgroundColor")
         setupActions()
     }
     
