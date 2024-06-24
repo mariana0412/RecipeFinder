@@ -31,6 +31,7 @@ class IngredientsListViewController: UIViewController {
     // MARK: - Lifecycle
     override func loadView() {
         self.view = ingredientsListView
+        view.backgroundColor = UIColor(named: "BackgroundColor")
     }
 
     override func viewDidLoad() {
@@ -51,12 +52,17 @@ class IngredientsListViewController: UIViewController {
     private func setupNavigationBar() {
         title = "Ingredients"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
+        navigationController?.navigationBar.barTintColor = UIColor(named: "BackgroundColor")
     }
     
     private func setupActions() {
         ingredientsListView.searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
         ingredientsListView.addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     // MARK: - Action Methods
@@ -92,13 +98,23 @@ class IngredientsListViewController: UIViewController {
     
     @objc func searchTapped() {
         let matchingRecipes = RecipeService.shared.findRecipes(byIngredients: ingredients)
-        let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
         
-        navigationController?.pushViewController(allRecipesViewController, animated: true)
+        if matchingRecipes.isEmpty {
+            let alert = UIAlertController(title: "No Recipes Found", message: "No recipes found for the given ingredients. Please try adding more ingredients.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            let allRecipesViewController = AllRecipesViewController(recipes: matchingRecipes)
+            navigationController?.pushViewController(allRecipesViewController, animated: true)
+        }
     }
 
     @objc func backTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }

@@ -13,6 +13,8 @@ class IngredientsListView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIColor(named: "BackgroundColor")
+
         return tableView
     }()
     
@@ -21,11 +23,13 @@ class IngredientsListView: UIView {
     let addButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Add", for: .normal)
+        button.setTitleColor(UIColor(named: "LabelsColor"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     
-    // Initializer
+    // MARK: - Custom Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
@@ -58,7 +62,6 @@ class IngredientsListView: UIView {
             addButton.centerXAnchor.constraint(equalTo: tableView.tableHeaderView!.centerXAnchor),
             addButton.centerYAnchor.constraint(equalTo: tableView.tableHeaderView!.centerYAnchor),
             addButton.heightAnchor.constraint(equalToConstant: 50),
-            addButton.widthAnchor.constraint(equalTo: tableView.tableHeaderView!.widthAnchor, constant: -40),
             
             searchButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
