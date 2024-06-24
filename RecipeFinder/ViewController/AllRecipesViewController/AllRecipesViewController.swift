@@ -12,18 +12,12 @@ class AllRecipesViewController: UIViewController {
     // MARK: - Properties
     let allRecipesView = AllRecipesView()
     var recipes: [Recipe]
-    
-    // Segmented control for sorting options
-    let sortingControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["Default", "By Time"])
-        control.selectedSegmentIndex = 0
-        control.translatesAutoresizingMaskIntoConstraints = false
-        return control
-    }()
-    
+        
     // MARK: - Custom Initializer
     init(recipes: [Recipe]) {
-        self.recipes = recipes
+        let sortedRecipes = recipes.sorted { $0.minutes < $1.minutes }
+        self.recipes = sortedRecipes
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,12 +32,11 @@ class AllRecipesViewController: UIViewController {
         title = "Recipes"
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationController?.navigationBar.tintColor = UIColor(named: "ButtonColor")
-        
-        navigationItem.titleView = sortingControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         allRecipesView.recipesTable.reloadData()
     }
     
@@ -51,7 +44,6 @@ class AllRecipesViewController: UIViewController {
         super.viewDidLoad()
         
         setUpTable()
-        setupActions()
     }
     
     // MARK: - Setup Methods
@@ -60,23 +52,6 @@ class AllRecipesViewController: UIViewController {
         allRecipesView.recipesTable.dataSource = self
         
         allRecipesView.recipesTable.register(RecipeTableViewCell.self, forCellReuseIdentifier: "RecipeCell")
-    }
-    
-    private func setupActions() {
-        sortingControl.addTarget(self, action: #selector(sortingOptionChanged(_:)), for: .valueChanged)
-    }
-    
-    // MARK: - Action Methods
-    @objc private func sortingOptionChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            recipes.sort { $0.name < $1.name }
-        case 1:
-            recipes.sort { $0.minutes < $1.minutes }
-        default:
-            break
-        }
-        allRecipesView.recipesTable.reloadData()
     }
 }
 
