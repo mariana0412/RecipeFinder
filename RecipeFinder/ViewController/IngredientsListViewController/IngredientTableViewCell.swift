@@ -22,7 +22,7 @@ class IngredientTableViewCell: UITableViewCell {
     
     var ingredientNameChanged: ((String) -> Void)?
     
-    // MARK: - Initializers
+    // MARK: - Custom Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

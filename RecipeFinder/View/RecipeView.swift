@@ -105,6 +105,7 @@ class RecipeView: UIView {
         return textView
     }()
     
+    // MARK: - Custom Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         

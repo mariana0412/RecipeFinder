@@ -9,6 +9,7 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
     static let identifier = "RecipeCell"
     
     var recipe: Recipe?
@@ -39,6 +40,7 @@ class RecipeTableViewCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - Custom Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -69,6 +71,7 @@ class RecipeTableViewCell: UITableViewCell {
         cookingTimeLabel.text = String(recipe.minutes)
     }
     
+    // MARK: - Setup Methods
     private func setupConstraints() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         timerIcon.translatesAutoresizingMaskIntoConstraints = false

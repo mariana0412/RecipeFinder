@@ -18,7 +18,7 @@ class AllRecipesView: UIView {
         return tableView
     }()
     
-    // Initializer
+    // MARK: - Custom Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()

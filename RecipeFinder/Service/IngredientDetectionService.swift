@@ -52,7 +52,7 @@ class IngredientDetectionService {
         }
     }
     
-    private func processResults(results: [VNRecognizedObjectObservation], minConfidence: VNConfidence = 0.1) -> [Ingredient] {
+    private func processResults(results: [VNRecognizedObjectObservation], minConfidence: VNConfidence = 0.6) -> [Ingredient] {
         var detectedObjects: [String: VNConfidence] = [:]
         var ingredients: [Ingredient] = []
         
@@ -67,10 +67,6 @@ class IngredientDetectionService {
                 detectedObjects[label] = confidence
                 ingredients.append(Ingredient(name: label))
             }
-        }
-        
-        for (label, confidence) in detectedObjects {
-            print("Object: \(label), Confidence: \(confidence)")
         }
         
         return ingredients

@@ -47,7 +47,7 @@ class RecipeService {
         }
     }
     
-    func findRecipes(byIngredients ingredients: [Ingredient], threshold: Double = 0.1) -> [Recipe] {
+    func findRecipes(byIngredients ingredients: [Ingredient], threshold: Double = 0.7) -> [Recipe] {
         let ingredientSet = Set(ingredients.map { $0.name.lowercased().trimmingCharacters(in: .whitespaces) })
         var matchingRecipes: [Recipe] = []
 
