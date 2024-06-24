@@ -46,6 +46,7 @@ class RecipeViewController: UIViewController {
         recipeView.recipeDescription.text = recipe.description
         recipeView.cookingTimeLabel.text = "\(recipe.minutes) minute(s)"
         recipeView.stepsTextView.text = recipe.steps.enumerated().map { "\($0 + 1). \($1)" }.joined(separator: "\n\n")
+        recipeView.ingredients.text = recipe.ingredients.enumerated().map { $1 }.joined(separator: ", ")
         updateFavoriteButton()
     }
     

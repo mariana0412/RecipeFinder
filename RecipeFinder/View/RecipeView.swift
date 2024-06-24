@@ -21,6 +21,29 @@ class RecipeView: UIView {
         return label
     }()
     
+    let ingredientsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.numberOfLines = 0
+        label.textColor = UIColor(named: "LabelColor")
+        label.text = "Ingredients:"
+        
+        return label
+    }()
+    
+    let ingredients: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.numberOfLines = 0
+        label.textColor = UIColor(named: "LabelColor")
+        
+        return label
+    }()
+    
     let recipeDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -107,6 +130,8 @@ class RecipeView: UIView {
         addSubview(favoriteButton)
         addSubview(stepsLabel)
         addSubview(stepsTextView)
+        addSubview(ingredientsLabel)
+        addSubview(ingredients)
     }
     
     private func setupConstraints() {
@@ -127,14 +152,21 @@ class RecipeView: UIView {
             favoriteButton.centerYAnchor.constraint(equalTo: timerIcon.centerYAnchor),
             favoriteButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
-            recipeDescription.topAnchor.constraint(equalTo: timerIcon.bottomAnchor, constant: 20),
+            ingredientsLabel.topAnchor.constraint(equalTo: cookingTimeLabel.bottomAnchor, constant: 16),
+            ingredientsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            
+            ingredients.topAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor, constant: 5),
+            ingredients.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            ingredients.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            recipeDescription.topAnchor.constraint(equalTo: ingredients.bottomAnchor, constant: 20),
             recipeDescription.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             recipeDescription.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             stepsLabel.topAnchor.constraint(equalTo: recipeDescription.bottomAnchor, constant: 20),
             stepsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
-            stepsTextView.topAnchor.constraint(equalTo: stepsLabel.bottomAnchor, constant: 10),
+            stepsTextView.topAnchor.constraint(equalTo: stepsLabel.bottomAnchor, constant: 5),
             stepsTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             stepsTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stepsTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
