@@ -10,27 +10,23 @@ import UIKit
 
 struct Recipe: Codable {
     let name: String
-    let id, minutes, contributorID: Int
-    let submitted, tags: String
-    let nutrition: [Double]
-    let nSteps: Int
-    let steps, description: String
-    let ingredients: String
-    let nIngredients, recipeID, averageRating, reviewCount: Int
-    
+    let id: Int
+    let minutes: Int
+    let tags: [String]
+    let steps: [String]
+    let description: String
+    let ingredients: [String]
+    let averageRating: Int
+    let isFavorite: Bool
+
     var formattedName: String {
         return name.capitalized
     }
 
     enum CodingKeys: String, CodingKey {
-        case name, id, minutes
-        case contributorID = "contributor_id"
-        case submitted, tags, nutrition
-        case nSteps = "n_steps"
+        case name, id, minutes, tags
         case steps, description, ingredients
-        case nIngredients = "n_ingredients"
-        case recipeID = "recipe_id"
         case averageRating = "average_rating"
-        case reviewCount = "review_count"
+        case isFavorite = "is_favorite"
     }
 }

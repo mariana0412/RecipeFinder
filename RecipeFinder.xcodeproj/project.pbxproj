@@ -11,10 +11,10 @@
 		1AED0CAB2C15E9F600EE9ECF /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CAA2C15E9F600EE9ECF /* RecipeViewController.swift */; };
 		1AED0CAD2C15EA0B00EE9ECF /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */; };
 		1AED0CAF2C15EC7000EE9ECF /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AED0CAE2C15EC7000EE9ECF /* RecipeTableViewCell.swift */; };
+		CA0C27862C29B7A400299FAC /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0C27852C29B7A300299FAC /* recipes.json */; };
 		CA0E3F972C172C1D000FC240 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3F962C172C1D000FC240 /* Ingredient.swift */; };
 		CA0E3F9F2C173794000FC240 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */; };
 		CA0E3FA12C1739EE000FC240 /* IngredientsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */; };
-		CA2347062C1F4A69009D9645 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = CA2347052C1F4A69009D9645 /* recipes.json */; };
 		CA2347082C1F4AA3009D9645 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2347072C1F4AA3009D9645 /* RecipeService.swift */; };
 		CA5DAE502C19DE0F00DA8DCC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA5DAE4F2C19DE0F00DA8DCC /* .gitignore */; };
 		CA68BB3D2C14522800BC9633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68BB3C2C14522800BC9633 /* AppDelegate.swift */; };
@@ -36,10 +36,10 @@
 		1AED0CAA2C15E9F600EE9ECF /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		1AED0CAC2C15EA0B00EE9ECF /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		1AED0CAE2C15EC7000EE9ECF /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		CA0C27852C29B7A300299FAC /* recipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		CA0E3F962C172C1D000FC240 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		CA0E3F9E2C173794000FC240 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		CA0E3FA02C1739EE000FC240 /* IngredientsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListViewController.swift; sourceTree = "<group>"; };
-		CA2347052C1F4A69009D9645 /* recipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		CA2347072C1F4AA3009D9645 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		CA5DAE4F2C19DE0F00DA8DCC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CA68BB392C14522800BC9633 /* RecipeFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,8 +142,8 @@
 				CACB42F12C19CCFE005AB0DF /* ButtonFactory.swift */,
 				CA68BB3C2C14522800BC9633 /* AppDelegate.swift */,
 				CA68BB3E2C14522800BC9633 /* SceneDelegate.swift */,
+				CA0C27852C29B7A300299FAC /* recipes.json */,
 				CA85C63E2C29795E00712EF3 /* RecipeFinderML3080.mlmodel */,
-				CA2347052C1F4A69009D9645 /* recipes.json */,
 				CA68BB452C14522900BC9633 /* Assets.xcassets */,
 				CA68BB472C14522900BC9633 /* LaunchScreen.storyboard */,
 				CA68BB4A2C14522900BC9633 /* Info.plist */,
@@ -224,7 +224,7 @@
 				CA68BB462C14522900BC9633 /* Assets.xcassets in Resources */,
 				CA5DAE502C19DE0F00DA8DCC /* .gitignore in Resources */,
 				CA68BB492C14522900BC9633 /* Base in Resources */,
-				CA2347062C1F4A69009D9645 /* recipes.json in Resources */,
+				CA0C27862C29B7A400299FAC /* recipes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

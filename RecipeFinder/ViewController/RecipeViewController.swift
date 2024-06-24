@@ -38,7 +38,7 @@ class RecipeViewController: UIViewController {
     private func configureView() {
         guard let recipe = recipe else { return }
         recipeView.label.text = recipe.formattedName
-        recipeView.recipeDescription.text = recipe.steps
+        recipeView.recipeDescription.text = recipe.description
+        recipeView.backgroundColor = .white
     }
 }
-

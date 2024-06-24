@@ -28,28 +28,21 @@ class RecipeService {
     }
     
     func findRecipes(byIngredients ingredients: [Ingredient], threshold: Double = 0.7) -> [Recipe] {
-            let ingredientSet = Set(ingredients.map { $0.name.lowercased().trimmingCharacters(in: .whitespaces) })
-            var matchingRecipes: [Recipe] = []
+        let ingredientSet = Set(ingredients.map { $0.name.lowercased().trimmingCharacters(in: .whitespaces) })
+        var matchingRecipes: [Recipe] = []
 
-            for recipe in recipes {
-                var ingredientsString = recipe.ingredients
-                ingredientsString = ingredientsString.replacingOccurrences(of: "'", with: "\"")
-                let data = Data(ingredientsString.utf8)
-                guard let recipeIngredients = try? JSONSerialization.jsonObject(with: data, options: []) as? [String] else {
-                    continue
-                }
-                
-                let recipeIngredientSet = Set(recipeIngredients.map { $0.lowercased().trimmingCharacters(in: .whitespaces) })
-                let commonIngredients = ingredientSet.filter { ingredient in
-                    recipeIngredientSet.contains { $0.contains(ingredient) }
-                }
-                
-                if Double(commonIngredients.count) / Double(recipeIngredientSet.count) >= threshold {
-                    matchingRecipes.append(recipe)
-                }
+        for recipe in recipes {
+            let recipeIngredientSet = Set(recipe.ingredients.map { $0.lowercased().trimmingCharacters(in: .whitespaces) })
+            let commonIngredients = ingredientSet.filter { ingredient in
+                recipeIngredientSet.contains { $0.contains(ingredient) }
             }
-
-            return matchingRecipes
+            
+            if Double(commonIngredients.count) / Double(recipeIngredientSet.count) >= threshold {
+                matchingRecipes.append(recipe)
+            }
         }
+
+        return matchingRecipes
+    }
 
 }
