@@ -62,7 +62,6 @@ class IngredientsListView: UIView {
             addButton.centerXAnchor.constraint(equalTo: tableView.tableHeaderView!.centerXAnchor),
             addButton.centerYAnchor.constraint(equalTo: tableView.tableHeaderView!.centerYAnchor),
             addButton.heightAnchor.constraint(equalToConstant: 50),
-            addButton.widthAnchor.constraint(equalTo: tableView.tableHeaderView!.widthAnchor, constant: -40),
             
             searchButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
