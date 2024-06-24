@@ -52,7 +52,10 @@ class IngredientsListViewController: UIViewController {
     private func setupNavigationBar() {
         title = "Ingredients"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
+
     }
     
     private func setupActions() {
