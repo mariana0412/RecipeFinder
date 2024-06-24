@@ -5,7 +5,6 @@
 //  Created by Mariana Piz on 10.06.2024.
 //
 
-import Foundation
 import UIKit
 
 class IngredientTableViewCell: UITableViewCell {
