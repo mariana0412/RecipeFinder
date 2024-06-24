@@ -14,6 +14,8 @@ class IngredientTableViewCell: UITableViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
+        textField.textColor = UIColor(named: "LabelColor")
+        textField.backgroundColor = UIColor(named: "TextFieldColor")
         
         return textField
     }()
@@ -23,6 +25,8 @@ class IngredientTableViewCell: UITableViewCell {
     // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = UIColor(named: "BackgroundColor")
         
         setupSubviews()
         setupConstraints()

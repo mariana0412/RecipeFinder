@@ -31,6 +31,7 @@ class IngredientsListViewController: UIViewController {
     // MARK: - Lifecycle
     override func loadView() {
         self.view = ingredientsListView
+        view.backgroundColor = UIColor(named: "BackgroundColor")
     }
 
     override func viewDidLoad() {

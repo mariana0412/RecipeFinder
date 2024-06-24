@@ -40,26 +40,20 @@ class WelcomeView: UIView {
     
     let takePictureButton: UIButton = ButtonFactory.makeButton(withTitle: "Take Photo", imageName: "camera.fill")
     
-    let manualInputLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Proceed with manual input"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = UIColor(named: "ButtonColor")
-        label.isUserInteractionEnabled = true
-        return label
+    let manualInputButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Proceed with manual input", for: .normal)
+        button.setTitleColor(UIColor(named: "ButtonColor"), for: .normal)
+        return button
     }()
     
-    let favoritesLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "View Favorite Recipes"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = UIColor(named: "ButtonColor")
-        label.isUserInteractionEnabled = true
-        return label
+    let favoritesButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("View Favorite Recipes", for: .normal)
+        button.setTitleColor(UIColor(named: "ButtonColor"), for: .normal)
+        return button
     }()
     
     // Initializer
@@ -81,8 +75,8 @@ class WelcomeView: UIView {
         addSubview(instructionsLabel)
         addSubview(productImageView)
         addSubview(takePictureButton)
-        addSubview(manualInputLabel)
-        addSubview(favoritesLabel)
+        addSubview(manualInputButton)
+        addSubview(favoritesButton)
     }
     
     private func setupConstraints() {
@@ -97,10 +91,10 @@ class WelcomeView: UIView {
             productImageView.heightAnchor.constraint(equalToConstant: 320),
             takePictureButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             takePictureButton.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
-            manualInputLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            manualInputLabel.topAnchor.constraint(equalTo: takePictureButton.bottomAnchor, constant: 20),
-            favoritesLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            favoritesLabel.topAnchor.constraint(equalTo: manualInputLabel.bottomAnchor, constant: 20)
+            manualInputButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            manualInputButton.topAnchor.constraint(equalTo: takePictureButton.bottomAnchor, constant: 20),
+            favoritesButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            favoritesButton.topAnchor.constraint(equalTo: manualInputButton.bottomAnchor, constant: 20)
         ])
     }
 }

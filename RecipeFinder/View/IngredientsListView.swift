@@ -13,6 +13,8 @@ class IngredientsListView: UIView {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIColor(named: "BackgroundColor")
+
         return tableView
     }()
     
@@ -21,7 +23,9 @@ class IngredientsListView: UIView {
     let addButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Add", for: .normal)
+        button.setTitleColor(UIColor(named: "LabelColor"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     
