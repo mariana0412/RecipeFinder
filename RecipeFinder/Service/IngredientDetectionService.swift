@@ -13,7 +13,7 @@ import UIKit
 class IngredientDetectionService {
     private lazy var coreMLRequest: VNCoreMLRequest? = {
         do {
-            let model = try RecipeFinderML3080(configuration: MLModelConfiguration()).model
+            let model = try RecipeFinder(configuration: MLModelConfiguration()).model
             let vnCoreMLModel = try VNCoreMLModel(for: model)
             let request = VNCoreMLRequest(model: vnCoreMLModel)
             request.imageCropAndScaleOption = .scaleFill
