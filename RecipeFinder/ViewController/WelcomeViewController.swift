@@ -160,13 +160,6 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
             return
         }
         
-        // Resize the image to 299x299
-//        let resizedImage = resizeImage(image: image, targetSize: CGSize(width: 299, height: 299))
-//        guard let ciResizedImage = CIImage(image: resizedImage) else {
-//            print("Failed to create CIImage from resized image")
-//            return
-//        }
-        
         let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
         
         do {
@@ -177,12 +170,9 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
                 return
             }
             
-            print("results: ", results)
-            
             let ingredients = processResults(results: results)
             print(ingredients)
             
-            // Redirect to IngredientsListController
             let ingredientsListController = IngredientsListViewController(ingredients: ingredients)
             navigationController?.pushViewController(ingredientsListController, animated: true)
         } catch {
@@ -230,3 +220,4 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
 }
+

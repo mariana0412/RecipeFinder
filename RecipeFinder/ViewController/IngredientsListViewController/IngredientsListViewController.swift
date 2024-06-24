@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class IngredientsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class IngredientsListViewController: UIViewController {
     
     // MARK: - Constants
     struct Const {
@@ -130,8 +130,10 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
     @objc func backTapped() {
         navigationController?.popViewController(animated: true)
     }
+    
+}
 
-    // MARK: - UITableViewDelegate and UITableViewDataSource Methods
+extension IngredientsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
             self.ingredients.remove(at: indexPath.row)
@@ -141,7 +143,9 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         let swipeActions = UISwipeActionsConfiguration(actions: [delete])
         return swipeActions
     }
-    
+}
+
+extension IngredientsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
     }
@@ -155,5 +159,4 @@ class IngredientsListViewController: UIViewController, UITableViewDelegate, UITa
         }
         return cell
     }
-
 }
