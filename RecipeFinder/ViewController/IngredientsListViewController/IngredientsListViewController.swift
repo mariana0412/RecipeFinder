@@ -61,6 +61,8 @@ class IngredientsListViewController: UIViewController {
     private func setupActions() {
         ingredientsListView.searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
         ingredientsListView.addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     // MARK: - Action Methods
@@ -109,6 +111,10 @@ class IngredientsListViewController: UIViewController {
 
     @objc func backTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }
