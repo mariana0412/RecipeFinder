@@ -18,7 +18,7 @@ class AllRecipesViewController: UIViewController {
         control.selectedSegmentIndex = 0
         control.translatesAutoresizingMaskIntoConstraints = false
         control.backgroundColor = UIColor(named: "BackgroundColor")
-        control.tintColor = UIColor(named: "LabelColor")
+        control.tintColor = UIColor(named: "LabelsColor")
         control.selectedSegmentTintColor = UIColor(named: "TextFieldColor")
         
         return control
@@ -41,7 +41,7 @@ class AllRecipesViewController: UIViewController {
         title = "Recipes"
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationController?.navigationBar.tintColor = UIColor(named: "ButtonColor")
-        
+        navigationController?.navigationBar.barTintColor = UIColor(named: "BackgroundColor")
         navigationItem.titleView = sortingControl
     }
     

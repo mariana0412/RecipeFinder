@@ -55,7 +55,7 @@ class IngredientsListViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backTapped))
         navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "ButtonColor")
-
+        navigationController?.navigationBar.barTintColor = UIColor(named: "BackgroundColor")
     }
     
     private func setupActions() {

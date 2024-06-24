@@ -91,7 +91,7 @@ class RecipeTableViewCell: UITableViewCell {
             cookingTimeLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
             cookingTimeLabel.trailingAnchor.constraint(equalTo: timerIcon.leadingAnchor, constant: -5),
             cookingTimeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            timerIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            timerIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             timerIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }
