@@ -22,9 +22,9 @@ Just take a photo of your ingredients, and the app will suggest recipes using th
 - <b>Dark and Light Mode:</b> The app supports both dark and light modes to match your device settings
 
 ## Technologies Used
-UIKit: For the user interface
-Create ML: For training the object detection model
-Core ML: For the machine learning model integration
+- UIKit: For the user interface
+- Create ML: For training the object detection model
+- Core ML: For the machine learning model integration
 
 ## Data Sources
 
